@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/Api/">
+    <Project Path="Api/Tasker.Api/Tasker.Api.csproj" />
+  </Folder>
+  <Folder Name="/Application/">
+    <Project Path="Application/Tasker.Application/Tasker.Application.csproj" />
+  </Folder>
+  <Folder Name="/Domain/">
+    <Project Path="Domain/Tasker.Domain/Tasker.Domain.csproj" />
+  </Folder>
+  <Folder Name="/Infrastructure/">
+    <Project Path="Infrastructure/Tasker.Infrastructure/Tasker.Infrastructure.csproj" />
+  </Folder>
+</Solution>
