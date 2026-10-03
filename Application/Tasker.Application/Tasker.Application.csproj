@@ -6,12 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Tasks\Commands\" />
-    <Folder Include="Tasks\Dtos\" />
-    <Folder Include="Tasks\Queries\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\Domain\Tasker.Domain\Tasker.Domain.csproj" />
   </ItemGroup>
 </Project>

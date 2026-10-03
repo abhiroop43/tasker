@@ -7,4 +7,9 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Application\Tasker.Application\Tasker.Application.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.12" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.3" />
+    <PackageReference Include="WolverineFx.EntityFrameworkCore" Version="6.45.0" />
+  </ItemGroup>
 </Project>
