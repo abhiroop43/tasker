@@ -1,3 +1,5 @@
+using Tasker.Api.Handlers;
+
 namespace Tasker.Api;
 
 public static class DependencyInjection
@@ -10,9 +12,9 @@ public static class DependencyInjection
         // Add services to the container.
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
         services.AddOpenApi();
-
+        services.AddProblemDetails();
+        services.AddExceptionHandler<CustomExceptionHandler>();
         services.AddCarter();
-
         services.AddValidatorsFromAssembly(typeof(Program).Assembly);
 
         hostBuilder.UseWolverine(opts =>
@@ -28,9 +30,10 @@ public static class DependencyInjection
         if (app.Environment.IsDevelopment())
             app.MapOpenApi();
 
+        app.UseHttpsRedirection();
+        app.UseExceptionHandler();
         app.MapCarter();
 
-        app.UseHttpsRedirection();
         return app;
     }
 }

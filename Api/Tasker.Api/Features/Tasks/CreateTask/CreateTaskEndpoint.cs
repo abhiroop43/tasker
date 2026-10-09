@@ -28,7 +28,7 @@ public class CreateTaskEndpoint : ICarterModule
                         cancellationToken
                     );
                     if (!validationResult.IsValid)
-                        return Results.ValidationProblem(validationResult.ToDictionary());
+                        throw new ValidationException(validationResult.Errors);
 
                     var command = new CreateTaskCommand(request.Title, request.Description);
                     var response = await bus.InvokeAsync<CreateTaskResponse>(
