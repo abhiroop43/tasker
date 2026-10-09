@@ -17,7 +17,7 @@ public class CreateTaskEndpoint : ICarterModule
         app.MapPost(
                 "/api/tasks",
                 async (
-                    CreateTaskRequest request,
+                    [FromBody] CreateTaskRequest request,
                     IValidator<CreateTaskRequest> validator,
                     IMessageBus bus,
                     CancellationToken cancellationToken

@@ -2,6 +2,8 @@ namespace Tasker.Api.Features.Tasks.CreateTask;
 
 public sealed class CreateTaskHandler
 {
+    private CreateTaskHandler() { }
+
     public static async Task<CreateTaskResponse> Handle(
         CreateTaskCommand command,
         ApplicationDbContext dbContext,
