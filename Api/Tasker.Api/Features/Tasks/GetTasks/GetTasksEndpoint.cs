@@ -4,6 +4,6 @@ public class GetTasksEndpoint : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
     {
-        throw new NotImplementedException();
+        app.MapGet("/tasks", () => { });
     }
 }

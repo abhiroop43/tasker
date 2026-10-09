@@ -1,3 +1,3 @@
 namespace Tasker.Api.Features.Tasks.CreateTask;
 
-public class CreateTaskCommand { }
+public sealed record CreateTaskCommand(string Title, string? Description);

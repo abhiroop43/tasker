@@ -3,10 +3,12 @@ namespace Tasker.Infrastructure.Persistence;
 public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
     : DbContext(options)
 {
+    private const string DefaultSchema = "tasker";
     public DbSet<TaskItem> Tasks => Set<TaskItem>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.HasDefaultSchema(DefaultSchema);
         modelBuilder.Entity<TaskItem>(entity =>
         {
             entity.HasKey(x => x.Id);

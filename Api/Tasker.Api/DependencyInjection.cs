@@ -1,5 +1,3 @@
-using Wolverine.EntityFrameworkCore;
-
 namespace Tasker.Api;
 
 public static class DependencyInjection
@@ -13,6 +11,10 @@ public static class DependencyInjection
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
         services.AddOpenApi();
 
+        services.AddCarter();
+
+        services.AddValidatorsFromAssembly(typeof(Program).Assembly);
+
         hostBuilder.UseWolverine(opts =>
         {
             opts.UseEntityFrameworkCoreTransactions();
@@ -25,6 +27,8 @@ public static class DependencyInjection
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
             app.MapOpenApi();
+
+        app.MapCarter();
 
         app.UseHttpsRedirection();
         return app;

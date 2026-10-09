@@ -4,6 +4,6 @@ public class UpdateTaskEndpoint : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
     {
-        throw new NotImplementedException();
+        app.MapPut("/tasks/{id:guid}", () => { });
     }
 }
