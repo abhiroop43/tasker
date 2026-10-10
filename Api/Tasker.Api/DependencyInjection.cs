@@ -15,6 +15,7 @@ public static class DependencyInjection
         services.AddProblemDetails();
         services.AddExceptionHandler<CustomExceptionHandler>();
         services.AddCarter();
+
         services.AddValidatorsFromAssembly(typeof(Program).Assembly);
 
         hostBuilder.UseWolverine(opts =>

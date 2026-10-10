@@ -1,9 +1,12 @@
 global using Carter;
 global using FluentValidation;
+global using Mapster;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;
 global using Tasker.Api;
+global using Tasker.Api.Dtos;
 global using Tasker.Domain.Exceptions;
+global using Tasker.Domain.Pagination;
 global using Tasker.Domain.Tasks;
 global using Tasker.Infrastructure;
 global using Tasker.Infrastructure.Persistence;
