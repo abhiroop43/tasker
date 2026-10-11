@@ -1,3 +1,3 @@
 namespace Tasker.Api.Features.Tasks.UpdateTask;
 
-public class UpdateTaskCommand { }
+public sealed record UpdateTaskCommand(Guid Id, string Title, string? Description);
