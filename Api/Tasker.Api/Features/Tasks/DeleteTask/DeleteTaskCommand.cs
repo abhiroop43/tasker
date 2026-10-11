@@ -1,3 +1,3 @@
 namespace Tasker.Api.Features.Tasks.DeleteTask;
 
-public class DeleteTaskCommand { }
+public sealed record DeleteTaskCommand(Guid Id);

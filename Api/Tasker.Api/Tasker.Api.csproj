@@ -21,4 +21,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\Tasker.Infrastructure\Tasker.Infrastructure.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Tasks\CompleteTask\" />
+  </ItemGroup>
 </Project>
