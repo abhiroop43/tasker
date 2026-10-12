@@ -1,3 +1,5 @@
+using Tasker.Api.Infrastructure.Validation;
+
 namespace Tasker.Api.Features.Tasks.UpdateTask;
 
 public sealed record UpdateTaskRequest(Guid Id, string Title, string? Description);
@@ -13,18 +15,11 @@ public class UpdateTaskEndpoint : ICarterModule
                 async (
                     [FromRoute] Guid id,
                     [FromBody] UpdateTaskRequest request,
-                    IValidator<UpdateTaskRequest> validator,
                     IMessageBus bus,
                     CancellationToken cancellationToken
                 ) =>
                 {
                     var requestWithId = request with { Id = id };
-                    var validationResult = await validator.ValidateAsync(
-                        requestWithId,
-                        cancellationToken
-                    );
-                    if (!validationResult.IsValid)
-                        throw new ValidationException(validationResult.Errors);
 
                     var command = requestWithId.Adapt<UpdateTaskCommand>();
                     await bus.InvokeAsync<UpdateTaskResponse>(command, cancellationToken);
@@ -32,6 +27,7 @@ public class UpdateTaskEndpoint : ICarterModule
                     return Results.NoContent();
                 }
             )
+            .AddEndpointFilter<ValidationFilter<UpdateTaskRequest>>()
             .WithName("UpdateTask")
             .WithSummary("Update Task")
             .WithDescription("Update an existing task")

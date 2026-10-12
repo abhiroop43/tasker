@@ -1,3 +1,5 @@
+using Tasker.Api.Infrastructure.Validation;
+
 namespace Tasker.Api.Features.Tasks.CreateTask;
 
 public sealed record CreateTaskRequest(string Title, string? Description);
@@ -18,18 +20,10 @@ public class CreateTaskEndpoint : ICarterModule
                 "/api/tasks",
                 async (
                     [FromBody] CreateTaskRequest request,
-                    IValidator<CreateTaskRequest> validator,
                     IMessageBus bus,
                     CancellationToken cancellationToken
                 ) =>
                 {
-                    var validationResult = await validator.ValidateAsync(
-                        request,
-                        cancellationToken
-                    );
-                    if (!validationResult.IsValid)
-                        throw new ValidationException(validationResult.Errors);
-
                     var command = new CreateTaskCommand(request.Title, request.Description);
                     var response = await bus.InvokeAsync<CreateTaskResponse>(
                         command,
@@ -39,6 +33,7 @@ public class CreateTaskEndpoint : ICarterModule
                     return Results.Created($"/api/tasks/{response.Id}", response);
                 }
             )
+            .AddEndpointFilter<ValidationFilter<CreateTaskRequest>>()
             .WithName("CreateTask")
             .WithSummary("Create Task")
             .WithDescription("Creates a new task")
