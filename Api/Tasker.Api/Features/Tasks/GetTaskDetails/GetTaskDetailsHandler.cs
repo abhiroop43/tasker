@@ -12,17 +12,13 @@ public sealed class GetTaskDetailsHandler
     {
         var task = await dbContext
             .Tasks.AsNoTracking()
-            .FirstOrDefaultAsync(x => x.Id == query.Id, cancellationToken);
+            .Where(x => x.Id == query.Id)
+            .ProjectToType<GetTaskDetailsResponse>()
+            .SingleOrDefaultAsync(cancellationToken);
 
         if (task == null)
             throw new NotFoundException(nameof(task), query.Id);
 
-        return new GetTaskDetailsResponse(
-            task.Id,
-            task.Title,
-            task.Description,
-            task.IsCompleted,
-            task.CreatedAt
-        );
+        return task;
     }
 }

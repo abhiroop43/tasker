@@ -4,7 +4,6 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Carter" Version="10.0.0" />
     <PackageReference Include="FluentValidation" Version="12.1.1" />
@@ -17,12 +16,7 @@
     </PackageReference>
     <PackageReference Include="WolverineFx.RuntimeCompilation" Version="6.48.2" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\Tasker.Infrastructure\Tasker.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Features\Tasks\CompleteTask\" />
   </ItemGroup>
 </Project>

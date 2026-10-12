@@ -18,15 +18,14 @@ public sealed class GetTasksHandler
             .ThenBy(x => x.Id)
             .Skip(query.PaginationRequest.PageIndex * query.PaginationRequest.PageSize)
             .Take(query.PaginationRequest.PageSize)
+            .ProjectToType<TaskListItemDto>()
             .ToListAsync(cancellationToken);
-
-        var tasksDto = tasks.Adapt<List<TaskListItemDto>>();
 
         var result = new PaginationResult<TaskListItemDto>(
             query.PaginationRequest.PageIndex + 1,
             query.PaginationRequest.PageSize,
             totalCount,
-            tasksDto
+            tasks
         );
 
         return new GetTasksResponse(result);
