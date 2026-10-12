@@ -11,6 +11,8 @@ public class GetTasksEndpoint : ICarterModule
                 async (
                     [FromQuery] int? pageNumber,
                     [FromQuery] int? pageSize,
+                    [FromQuery] string? search,
+                    [FromQuery] bool? isCompleted,
                     IMessageBus bus,
                     CancellationToken cancellationToken
                 ) =>
@@ -19,7 +21,9 @@ public class GetTasksEndpoint : ICarterModule
                     var normalizedPageSize = Math.Clamp(pageSize ?? 10, 1, 100);
 
                     var query = new GetTasksQuery(
-                        new PaginationRequest(normalizedPageNumber - 1, normalizedPageSize)
+                        new PaginationRequest(normalizedPageNumber - 1, normalizedPageSize),
+                        search,
+                        isCompleted
                     );
 
                     var response = await bus.InvokeAsync<GetTasksResponse>(
